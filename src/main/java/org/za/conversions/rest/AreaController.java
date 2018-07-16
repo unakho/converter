@@ -20,6 +20,9 @@ public class AreaController {
         int start = converter.getFromUnit().indexOf("[");
         int end = converter.getFromUnit().indexOf("]");
 
+
+
+
         String unit = converter.getFromUnit().substring(start + 1, end);
         switch (unit){
             case "mm2":

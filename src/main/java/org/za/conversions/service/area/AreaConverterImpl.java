@@ -3,7 +3,6 @@ package org.za.conversions.service.area;
 import org.springframework.stereotype.Service;
 import org.za.conversions.dto.ConverterDto;
 import org.za.conversions.service.enums.Area;
-import org.za.conversions.service.enums.Length;
 
 @Service
 public class AreaConverterImpl implements AreaService {
@@ -12,7 +11,6 @@ public class AreaConverterImpl implements AreaService {
 
     public AreaConverterImpl() {
     }
-
     /**
      * Constructs a unit converter to convert between unit and meter
      */
