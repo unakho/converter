@@ -16,33 +16,6 @@ public class VolumeController {
     @CrossOrigin(origins = {"http://localhost:4200"})
     @RequestMapping(value = "/volume", method = RequestMethod.PUT)
     public ConverterDto convertToMeter(@RequestBody ConverterDto converter) {
-
-        int start = converter.getFromUnit().indexOf("[");
-        int end = converter.getFromUnit().indexOf("]");
-
-        String unit = converter.getFromUnit().substring(start + 1, end);
-        switch (unit){
-            case "cm3":
-                converter = volumeConverter.getFromCubicCentimetre(converter);
-                break;
-
-            case "dm2":
-                converter = volumeConverter.getFromCubicDecimetre(converter);
-                break;
-
-            case "m3":
-                converter = volumeConverter.getFromCubicMetre(converter);
-                break;
-
-            case "l":
-                converter = volumeConverter.getFromLitre(converter);
-
-            case "in3":
-                converter = volumeConverter.getFromCubicInch(converter);
-
-            case "ft3":
-                converter = volumeConverter.getFromCubicFeet(converter);
-        }
-        return converter;
+        return volumeConverter.getFromUnit(converter);
     }
 }

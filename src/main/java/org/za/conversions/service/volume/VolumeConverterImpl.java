@@ -2,122 +2,46 @@ package org.za.conversions.service.volume;
 
 import org.springframework.stereotype.Service;
 import org.za.conversions.dto.ConverterDto;
-import org.za.conversions.service.enums.Mass;
+import org.za.conversions.service.base.Converter;
 import org.za.conversions.service.enums.Volume;
 
 @Service
-public class VolumeConverterImpl implements VolumeService {
+public class VolumeConverterImpl extends Converter implements VolumeService {
 
     private double factor;
 
     public VolumeConverterImpl() {
     }
 
+    /**
+     * Constructs a unit converter to convert between unit and meter
+     */
     @Override
-    public ConverterDto getFromCubicCentimetre(ConverterDto converter) {
+    public ConverterDto getFromUnit(ConverterDto input) {
 
         double factor = 0.00;
-        String fromUnit = extractUnit(converter.getFromUnit());
-        String toUnit = extractUnit(converter.getToUnit());
+        ConverterDto converter = super.extractUnits(input);
 
-        switch (fromUnit){
+        switch (converter.getFromUnit()) {
             case "cm3":
-                factor = getFactor(toUnit);
-                break;
-        }
-        converter.setAmount(convert(converter.getAmount(), factor));
-        return converter;
-    }
-
-    @Override
-    public ConverterDto getFromCubicDecimetre(ConverterDto converter) {
-
-        double factor = 0.00;
-        String fromUnit = extractUnit(converter.getFromUnit());
-        String toUnit = extractUnit(converter.getToUnit());
-
-        switch (fromUnit){
             case "dm2":
-                factor = getFactor(toUnit);
-                break;
-        }
-        converter.setAmount(convert(converter.getAmount(), factor));
-        return converter;
-    }
-
-    @Override
-    public ConverterDto getFromCubicMetre(ConverterDto converter) {
-
-        double factor = 0.00;
-        String fromUnit = extractUnit(converter.getFromUnit());
-        String toUnit = extractUnit(converter.getToUnit());
-
-        switch (fromUnit){
             case "m3":
-                factor = getFactor(toUnit);
-                break;
-        }
-        converter.setAmount(convert(converter.getAmount(), factor));
-        return converter;
-    }
-
-    @Override
-    public ConverterDto getFromLitre(ConverterDto converter) {
-
-        double factor = 0.00;
-        String fromUnit = extractUnit(converter.getFromUnit());
-        String toUnit = extractUnit(converter.getToUnit());
-
-        switch (fromUnit){
             case "l":
-                factor = getFactor(toUnit);
-                break;
-        }
-        converter.setAmount(convert(converter.getAmount(), factor));
-        return converter;
-    }
-
-    @Override
-    public ConverterDto getFromCubicInch(ConverterDto converter) {
-
-        double factor = 0.00;
-        String fromUnit = extractUnit(converter.getFromUnit());
-        String toUnit = extractUnit(converter.getToUnit());
-
-        switch (fromUnit){
             case "in3":
-                factor = getFactor(toUnit);
+            case "ft3":
+                factor = getToUnit(converter.getToUnit());
                 break;
         }
-        converter.setAmount(convert(converter.getAmount(), factor));
+
+        double amount = converter.getAmount() * factor;
+        converter.setAmount(amount);
         return converter;
     }
 
-    @Override
-    public ConverterDto getFromCubicFeet(ConverterDto converter) {
+    private double getToUnit(String unit) {
 
         double factor = 0.00;
-        String fromUnit = extractUnit(converter.getFromUnit());
-        String toUnit = extractUnit(converter.getToUnit());
-
-        switch (fromUnit){
-            case "ft3":
-                factor = getFactor(toUnit);
-                break;
-        }
-        converter.setAmount(convert(converter.getAmount(), factor));
-        return converter;
-    }
-
-    private double convert(double amount, double factor){
-        double result = amount * factor;
-
-        return result;
-    }
-
-    private double getFactor(String unit){
-
-        switch (unit){
+        switch (unit) {
             case "cm3":
             case "dm2":
             case "m3":
@@ -128,13 +52,5 @@ public class VolumeConverterImpl implements VolumeService {
                 break;
         }
         return factor;
-    }
-
-    private String extractUnit(String unit){
-        int start = unit.indexOf("[");
-        int end = unit.indexOf("]");
-
-        String result = unit.substring(start + 1, end);
-        return result;
     }
 }

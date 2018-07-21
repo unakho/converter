@@ -4,19 +4,28 @@ import java.io.Serializable;
 
 public class Converter implements Serializable {
 
+    private Double amount;
     private String toUnit;
     private String fromUnit;
-    private double amount;
+    private Double factor;
 
     public Converter() {
     }
 
-    public Converter(String toUnit, String fromUnit, double amount) {
+    public Converter(Double amount, String toUnit, String fromUnit, Double factor) {
+        this.amount = amount;
         this.toUnit = toUnit;
         this.fromUnit = fromUnit;
-        this.amount = amount;
+        this.factor = factor;
     }
 
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
     public String getToUnit() {
         return toUnit;
@@ -34,11 +43,11 @@ public class Converter implements Serializable {
         this.fromUnit = fromUnit;
     }
 
-    public double getAmount() {
-        return amount;
+    public Double getFactor() {
+        return factor;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setFactor(Double factor) {
+        this.factor = factor;
     }
 }

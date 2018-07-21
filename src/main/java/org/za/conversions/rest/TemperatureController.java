@@ -16,21 +16,6 @@ public class TemperatureController {
     @CrossOrigin(origins = {"http://localhost:4200"}, maxAge = 3600)
     @RequestMapping(value = "/temperature", method = RequestMethod.PUT)
     public ConverterDto convertToMeter(@RequestBody ConverterDto converter) {
-
-        int start = converter.getFromUnit().indexOf("[");
-        int end = converter.getFromUnit().indexOf("]");
-
-        String unit = converter.getFromUnit().substring(start + 1, end);
-        switch (unit) {
-            case "c":
-                converter = temperatureConverter.getFromCelcius(converter);
-                break;
-
-            case "f":
-                converter = temperatureConverter.getFromFarenheit(converter);
-                break;
-
-        }
-        return converter;
+        return temperatureConverter.getFromUnit(converter);
     }
 }

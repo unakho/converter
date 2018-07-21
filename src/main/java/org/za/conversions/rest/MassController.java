@@ -16,33 +16,6 @@ public class MassController {
     @CrossOrigin(origins = {"http://localhost:4200"}, maxAge = 3600)
     @RequestMapping(value = "/mass", method = RequestMethod.PUT)
     public ConverterDto convertToMeter(@RequestBody ConverterDto converter) {
-
-        int start = converter.getFromUnit().indexOf("[");
-        int end = converter.getFromUnit().indexOf("]");
-
-        String unit = converter.getFromUnit().substring(start + 1, end);
-        switch (unit) {
-
-            case "mg":
-                converter = massConverter.getFromMilligram(converter);
-                break;
-
-            case "g":
-                converter = massConverter.getFromGram(converter);
-                break;
-
-            case "kg":
-                converter = massConverter.getFromKilogram(converter);
-                break;
-
-            case "t":
-                converter = massConverter.getFromTone(converter);
-                break;
-
-            case "lb":
-                converter = massConverter.getFromPound(converter);
-                break;
-        }
-        return converter;
+        return massConverter.getFromUnit(converter);
     }
 }
