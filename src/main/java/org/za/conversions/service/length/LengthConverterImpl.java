@@ -3,16 +3,17 @@ package org.za.conversions.service.length;
 import org.springframework.stereotype.Service;
 import org.za.conversions.dto.ConverterDto;
 import org.za.conversions.service.base.Converter;
-import org.za.conversions.service.enums.Area;
 import org.za.conversions.service.enums.Length;
 
+/**
+ * @author unakho.kama
+ */
 @Service
-public class LengthConverterImpl extends Converter implements LengthService {
-
-    private double factor;
+public class LengthConverterImpl extends Converter implements LengthService<ConverterDto> {
 
     public LengthConverterImpl() {
     }
+
     /**
      * Constructs a unit converter to convert between unit and meter
      */

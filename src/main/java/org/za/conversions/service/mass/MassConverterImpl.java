@@ -5,8 +5,11 @@ import org.za.conversions.dto.ConverterDto;
 import org.za.conversions.service.base.Converter;
 import org.za.conversions.service.enums.Mass;
 
+/**
+ * @author unakho.kama
+ */
 @Service
-public class MassConverterImpl extends Converter implements MassService {
+public class MassConverterImpl extends Converter implements MassService<ConverterDto> {
 
     public MassConverterImpl() {
     }

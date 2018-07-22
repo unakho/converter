@@ -5,13 +5,11 @@ import org.za.conversions.dto.ConverterDto;
 import org.za.conversions.service.base.Converter;
 import org.za.conversions.service.enums.Volume;
 
+/**
+ * @author unakho.kama
+ */
 @Service
-public class VolumeConverterImpl extends Converter implements VolumeService {
-
-    private double factor;
-
-    public VolumeConverterImpl() {
-    }
+public class VolumeConverterImpl extends Converter implements VolumeService<ConverterDto> {
 
     /**
      * Constructs a unit converter to convert between unit and meter

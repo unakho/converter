@@ -6,10 +6,11 @@ import org.za.conversions.service.base.Converter;
 import org.za.conversions.service.enums.Area;
 import org.za.conversions.service.enums.Distance;
 
+/**
+ * @author unakho.kama
+ */
 @Service
-public class DistanceConverterImpl  extends Converter implements DistanceService {
-
-    private double factor;
+public class DistanceConverterImpl  extends Converter implements DistanceService<ConverterDto> {
 
     public DistanceConverterImpl() {
     }

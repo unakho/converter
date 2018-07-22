@@ -1,12 +1,17 @@
 package org.za.conversions.service.area;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.za.conversions.dto.ConverterDto;
 import org.za.conversions.service.base.Converter;
 import org.za.conversions.service.enums.Area;
 
+/**
+ * @author unakho.kama
+ */
 @Service
-public class AreaConverterImpl extends Converter implements AreaService {
+@Primary
+public class AreaConverterImpl extends Converter implements AreaService<ConverterDto> {
 
     public AreaConverterImpl() {
     }
@@ -17,7 +22,7 @@ public class AreaConverterImpl extends Converter implements AreaService {
     public ConverterDto getFromUnit(ConverterDto input) {
 
         double factor = 0.00;
-        ConverterDto converter = super.extractUnits(input);
+        org.za.conversions.dto.ConverterDto converter = super.extractUnits(input);
 
         switch (converter.getFromUnit()) {
             case "mm2":

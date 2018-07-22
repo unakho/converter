@@ -5,8 +5,11 @@ import org.za.conversions.dto.ConverterDto;
 import org.za.conversions.service.base.Converter;
 import org.za.conversions.service.enums.Temperature;
 
+/**
+ * @author unakho.kama
+ */
 @Service
-public class TemperatureConverterImpl extends Converter implements TemperatureService {
+public class TemperatureConverterImpl extends Converter implements TemperatureService<ConverterDto> {
 
     public TemperatureConverterImpl() {
     }
